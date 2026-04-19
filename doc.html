@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Vinařství</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Czudek Tomasz <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xczudet00@stud.fit.vutbr.cz">xczudet00@stud.fit.vutbr.cz</a> -
+		Nakupování - objednávky, košík..., Správa vín, lahvování, evidence sklizní
+	</dd>
+	<dd>Gruszkowski Matěj <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xgruszm00@stud.fit.vutbr.cz">xgruszm00@stud.fit.vutbr.cz</a> - 
+		Správa činností, správa řádků, evidence ošetření
+	</dd>
+  <dd>Kohut Jan <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xkohutj00@stud.fit.vutbr.cz">xkohutj00@stud.fit.vutbr.cz</a> - 
+		Autorizace, správa uživatelů, webhosting
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://www.stud.fit.vutbr.cz/~xkohutj00/IIS">http://www.stud.fit.vutbr.cz/~xkohutj00/IIS</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin@andrzej.cz</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>vinar1@seznam.cz</td><td>Vinar11</td><td>Vinař</td></tr>
+<tr><td>zamestnanec2@seznam.cz</td><td>Zamestnanec11</td><td>Pracovník</td></tr>
+<tr><td>zakaznik1@seznam.cz</td><td>Zakaznik11</td><td>Zákazník</td></tr>
+</tbody></table>
+
+<h3>Video</h3>
+
+<a href="https://drive.google.com/file/d/1wgiumWLQ8m8rz2d9KGlnWcnah7aE7SfH/view?usp=sharing">https://drive.google.com/file/d/1wgiumWLQ8m8rz2d9KGlnWcnah7aE7SfH/view?usp=sharing</a>
+
+
+<h2>Implementace</h2>
+
+<h4>Použité technologie:</h4>
+<p>Laravel, PHP, MySQL, Blade Templates, Bootstrap, JavaScript, jQuery</p>
+
+
+<h4>Routy:</h4>
+<p>/routes/web.php<br/>
+Definice všech rout aplikace, které určují, jaké URL odpovídají jakým kontrolerům a akcím.</p>
+
+<h4>Controllery:</h4>
+<p>/app/Http/Controllers/<br/>
+Obsahuje všechny controllery, které zpracovávají požadavky uživatelů a volají příslušné modely a pohledy.</p>
+
+<ol>
+	<li>Controller - enumerace typu činnosti, odrůdy a stavu nákupu</li>
+	<li>KosikController - správa košíku a vytvoření objednávek</li>
+	<li>NakupyController - správa a detail objednávek</li>
+	<li>OsetreniController - evidence vyřízení činností (ošetreni, řezy, postřiky, ...), detail ošetření, odstranění ošetření</li>
+	<li>PlanovaniController.php - vyváření plánu pro ošetření a sklizně</li>
+	<li>SklizenController - správa sklizní</li>
+	<li>SpravaRadkuController - zobrazení seznamu a detailu řádku, vytvoření a úprava</li>
+	<li>UserController - autorizace uživatelů</li>
+	<li>UserManagementController - správa uživatelů </li>
+	<li>VinoController - správa vín</li>
+</ol>
+
+<h4>Modely:</h4>
+<p>/app/Models/</p>
+<p>Obsahuje všechny modely reprezentující tabulky v databázi a jejich vztahy.</p>
+
+<h4>Migrace:</h4>
+<p>/database/migrations/<br/>
+Obsahuje všechny migrace, které definují strukturu databázových tabulek.</p>
+
+<h4>Seedery:</h4>
+<p>/database/seeders/<br/>
+Obsahuje seedery pro naplnění databáze počátečními daty.</p>
+
+<h4>Pohledy:</h4>
+<p>/resources/views/<br/>
+Obsahuje všechny Blade šablony pro generování HTML stránek.</p>
+
+<h4>Middleware:</h4>
+<p>/app/Http/Middleware/<br/>
+Obsahuje middleware, které zpracovávají HTTP požadavky před tím, než jsou předány do kontrolerů.</p>
+
+<h4>Výčtové typy:</h4>
+<p>/app/Enums/<br/>
+Obsahuje výčtové typy.</p>
+
+<h3>Databáze</h3>
+
+<img src="diag/iis-er.png" />
+
+<h2>Instalace</h2>
+<ol>
+<li>> npm install</li>
+<li>> composer install</li>
+<li>Přejmenovat .env.example na .env</li>
+<li>Ve vzniklém .env souboru nastavit připojení na databázi (DB_*)</li>
+<li>> PHP artisan key:generate</li>
+<li>> PHP artisan migrate</li>
+<li>> PHP artisan db:seed</li>
+<li>> PHP artisan serve</li>
+</ol>
+
+<h2>Známé problémy</h2>
+<p>Nenalezeno.</p>
+
+</body></html>
